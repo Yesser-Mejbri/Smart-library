@@ -1,0 +1,125 @@
+{% extends 'basic.html' %}
+{% load static %}
+{% block title %} Library Management System {% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+<style>
+@import "bourbon";
+
+#fullBg {  
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    background: url('https://miro.medium.com/v2/resize:fit:1200/1*6Jp3vJWe7VFlFHZ9WhSJng.jpeg') no-repeat center center fixed; 
+    background-size: cover;
+}
+
+.form-signin {
+  max-width: 280px;
+  margin: 60px auto 10px;
+
+  .form-signin-heading {
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+	  margin-bottom: 20px;
+	}
+
+	.checkbox {
+	  font-weight: normal;
+	}
+
+	.form-control {
+	  position: relative;
+	  font-size: 16px;
+	  height: auto;
+	  padding: 10px;
+		@include box-sizing(border-box);
+	}
+
+	input[type="text"] {
+	  margin-bottom: -1px;
+     border-top: 1px solid transparent;
+     border-right: 1px solid transparent;
+     border-left: 1px solid transparent;
+     box-shadow: none;
+	  border-radius: 3px 3px 0px 0px;	  
+        
+		&:focus {
+      box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);      
+		}
+	}
+
+	input[type="password"] {
+    z-index: 2;
+	  margin-bottom: 20px;
+    border-top: none;
+    border-bottom: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-left: 1px solid transparent;
+    border-radius: 0px 0px 3px 3px;	  
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+
+		&:focus {
+      box-shadow: inset 0 1px 1px rgba(0,0,0,0.075), 0px 1px 0px 0px rgba(255,255,255,0.5);       
+		}
+	}
+
+  .btn {
+    font-weight: bold;
+    border-radius: 3px;
+    border: none;
+  }
+}
+
+p.sign-up {
+  color: #fff;
+  font-size: 12px;
+}
+
+
+
+
+
+</style>
+<div id="fullBg" >
+
+<div class="container">
+  <form method="POST" class="form-signin">  {% csrf_token %}     
+      <h1 class="form-signin-heading">Student Login</h1>
+      <input type="text" class="form-control" name="username" placeholder="Enter Username" required="" autofocus="" />
+      <input type="password" class="form-control" name="password" placeholder="Password" required=""/>     
+      
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>   
+    </form>
+  <p class="text-center sign-up"><strong>Sign up and <a href="/student_registration">Create an account</a></strong></p>
+  
+</div>
+{% endblock %}
+{% block js %}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+    {% if alert %}
+    swal({
+        title: "Error!",
+        text: "{{ alert }}",
+        icon: "error",
+        button: "OK",
+    });
+    {% endif %}
+    {% if success %}
+    swal({
+        title: "Success!",
+        text: "{{ success }}",
+        icon: "success",
+        button: "OK",
+    }).then(function() {
+        document.location = "/profile";
+    });
+    {% endif %}
+</script>
+{% endblock %}

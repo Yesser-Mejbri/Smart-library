@@ -1,0 +1,178 @@
+{% extends 'student_navbar.html' %}
+
+{% block title %} Profile {% endblock %}
+
+{% block css %}
+<style>
+
+
+
+
+h1 {
+  font-family: secondary-font;
+  text-transform: uppercase;
+  color: primary-font-color;
+  font-size: 2.5rem;
+}
+h5 {
+  font-family: secondary-font;
+  text-transform: uppercase;
+  color: primary-font-color;
+  font-size: 1.563rem;
+}
+
+.fullwidth {
+  max-width: 100%;
+  height: auto;
+}
+.-spacing {
+  &-a {
+    margin-top: 3.125rem;
+  }
+  &-b {
+    margin-top: 1.875rem;
+  }
+}
+
+.-typo {
+  &-copy {
+    margin-bottom: 1.875rem;
+    color: secondary-font-color;
+    font-size: 1rem;
+    font-family: primary-font;
+
+    &--blue {
+      color: primary-font-color;
+    }
+  }
+}
+
+.profile-image {
+  overflow: hidden;
+
+  &:hover {
+    .edit-profile-image {
+      opacity: 1;
+    }
+  }
+}
+
+.edit-profile-image {
+  width: auto;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0.9375rem;
+  right: 0.9375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem;
+  cursor: pointer;
+  opacity: 0;
+  background: -moz-linear-gradient(
+    top,
+    rgba(231, 211, 116, 0.7) 0%,
+    rgba(8, 184, 184, 0.7) 100%
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(231, 211, 116, 0.7) 0%,
+    rgba(8, 184, 184, 0.7) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(231, 211, 116, 0.7) 0%,
+    rgba(8, 184, 184, 0.7) 100%
+  );
+ 
+
+
+  &__information {
+    color: #fff;
+    font-size: 1.125rem;
+  }
+
+  &__label {
+    margin-left: 0.5rem;
+    display: inline-block;
+    font-family: primary-font;
+  }
+}
+
+.btn {
+  border: none;
+  background: #fff;
+  border-radius: 0;
+  padding: 0.875rem 0.625rem;
+  cursor: pointer;
+
+  &__label {
+    font-family: primary-font;
+    margin-left: 0.5rem;
+  }
+
+  &--green {
+    background: green;
+    color: #fff;
+  }
+}
+
+</style>
+{% endblock %}
+{% block body %}
+
+<div class="container">
+    <div class="row -spacing-a">
+      <div class="col-md-12">
+        <h1>My Profil</h1>
+      </div>
+    </div>
+    <div class="row -spacing-a">
+      <div class="col-md-4">
+        <div class="profile-image">
+          <img src="{{user.student.image.url}}" class="fullwidth"/>
+          <div>
+          <span>
+            <span></span>
+            </span>
+        </div>
+        </div>
+        
+      </div>
+      <div class="col-md-8">
+        <h5>General information</h5>
+        <div class="row -spacing-b">
+          <div class="col-md-3">
+            <p class="-typo-copy">User Id</p>
+            <p class="-typo-copy">Student name</p>
+            <p class="-typo-copy">Full Name</p>
+            <p class="-typo-copy">Email</p>
+            <p class="-typo-copy">Phone Number</p>
+            <p class="-typo-copy">Branch</p>
+            <p class="-typo-copy">Class</p>
+            <p class="-typo-copy">Roll Number</p>
+          </div>
+          <div class="col-md-3">
+            <p class="-typo-copy -typo-copy--blue">{{user.id}}</p>
+            <p class="-typo-copy -typo-copy--blue">{{user}}</p>
+            <p class="-typo-copy -typo-copy--blue">{{user.get_full_name}}</p>
+            <p class="-typo-copy -typo-copy--blue">{{user.email}}</p>
+            <p class="-typo-copy -typo-copy--blue">{{user.student.phone}}</p>
+            <p class="-typo-copy -typo-copy--blue">{{user.student.branch}}</p>
+            <p class="-typo-copy -typo-copy--blue">{{user.student.classroom}}</p>
+            <p class="-typo-copy -typo-copy--blue">{{user.student.roll_no}}</p>
+          </div>
+        
+            
+           
+            
+          
+        
+        </div>
+        <a href="/edit_profile/" style="width: 9rem;" class="btn btn-outline-primary mt-3">Edit Profile</a>
+      </div>  
+    </div>
+    
+  </div>
+{% endblock %}

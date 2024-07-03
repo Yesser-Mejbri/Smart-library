@@ -1,0 +1,59 @@
+{% extends 'admin_navbar.html' %}
+{% load static %}
+{% block title %} View feedbacks{% endblock %}
+{% block css %}
+{% endblock %}
+{% block body %}
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    h1 {
+        text-align: center;
+    }
+    table {
+        width: 80%;
+        margin: 0 auto;
+        border-collapse: collapse;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+    th {
+        background-color: #2b688e;
+        color: white;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<h1>Feedbacks</h1>
+
+<table>
+    <tr>
+       <th>Message</th>
+       <th>Action</th>
+    </tr>
+    {% for feedback in feedbacks %}
+    <tr>
+        <td>{{ feedback.message }}</td>
+        <td>
+            <button type="button" onclick="window.location.href='http://127.0.0.1:8000/sentiment_analyse/'" style="background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;">Analyse</button>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
